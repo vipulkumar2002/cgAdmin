@@ -1,0 +1,21 @@
+.main_content {
+  background: #eeebf0;
+  padding: 50px 0px;
+}
+.placement-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.addNewCard {
+  width: 300px;
+  height: 200px;
+  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-btn {
+  color: #fff;
+}

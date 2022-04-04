@@ -1,0 +1,18 @@
+.main_content {
+  background: #eeebf0;
+  padding: 50px 0px;
+}
+
+.login-container {
+  text-align: center;
+}
+
+.gform {
+  background: #fff;
+  margin: 20px;
+  padding: 80px 15px;
+  -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+}
