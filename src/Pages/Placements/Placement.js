@@ -8,7 +8,7 @@ const Placement = () => {
     <div className="main_content">
       <h1 className="placement-heading">CollegeSpace - Placements</h1>
       <div className="cards row col-md-6 col-lg-4 ">
-        <Cards name="placements" />
+        <Cards />
       </div>
     </div>
   );

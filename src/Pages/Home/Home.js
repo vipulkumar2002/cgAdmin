@@ -10,41 +10,55 @@ export default function Home() {
       <div className="home">
         <div
           id="carouselExampleFade"
-          class="carousel slide carousel-fade"
+          className="carousel slide carousel-fade"
           data-bs-ride="carousel"
         >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src={img1} class="d-block w-100 img_bg" alt="Not found" />
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img
+                src={img1}
+                className="d-block w-100 img_bg"
+                alt="Not found"
+              />
             </div>
-            <div class="carousel-item">
-              <img src={img2} class="d-block w-100 img_bg" alt="Not found" />
+            <div className="carousel-item">
+              <img
+                src={img2}
+                className="d-block w-100 img_bg"
+                alt="Not found"
+              />
             </div>
-            <div class="carousel-item">
+            <div className="carousel-item">
               <img
                 src={img3}
-                class="d-block w-100 h-100 img_bg"
+                className="d-block w-100 h-100 img_bg"
                 alt="Not found"
               />
             </div>
           </div>
           <button
-            class="carousel-control-prev"
+            className="carousel-control-prev"
             type="button"
             data-bs-target="#carouselExampleFade"
             data-bs-slide="prev"
           >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
           </button>
           <button
-            class="carousel-control-next"
+            className="carousel-control-next"
             type="button"
             data-bs-target="#carouselExampleFade"
             data-bs-slide="next"
           >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
           </button>
         </div>
         <div className="home_content">
@@ -62,7 +76,7 @@ export default function Home() {
                   Know More
                 </Link>
 
-                <i class="fa fa-arrow-right fa-1x" aria-hidden="true"></i>
+                <i className="fa fa-arrow-right fa-1x" aria-hidden="true"></i>
               </button>
             </div>
           </div>

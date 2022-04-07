@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./Cards.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { ImLinkedin } from "react-icons/im";
 
-const Cards = ({ name }) => {
+const Cards = () => {
   const [profiles, setProfiles] = useState([]);
   // console.log(profiles.data);
   useEffect(() => {
@@ -11,9 +13,11 @@ const Cards = ({ name }) => {
   }, []);
   async function getAllProfiles() {
     try {
-      const profiles = await axios.get(`http://localhost:7000/${name}`);
-      // console.log(profile.data);
-      setProfiles(profiles.data);
+      const profiles = await axios.get(
+        "http://localhost:4040/profiles/internships"
+      );
+      // console.log(profiles.data);
+      setProfiles(profiles.data.internships);
     } catch (error) {
       console.log("Something went wrong");
     }
@@ -36,30 +40,30 @@ const Cards = ({ name }) => {
                 <h6 id="personName" name="person_Name">
                   {profile.person_name}
                 </h6>
-                <br />
+                <hr />
                 <h6 id="jobRole" name="job_Role">
                   {profile.job_role}
                 </h6>
-                <br />
+                <hr />
                 <h6 id="companyName"> {profile.company_name}</h6>
               </div>
             </div>
             <div className="buttons">
               <div>
                 <Link
-                  className="btn btn-primary"
+                  className="btn btn-success"
                   to={`/UpdateCardI/${profile.id}`}
                 >
-                  Edit
+                  <AiFillEdit />
                 </Link>
               </div>
 
               <div>
                 <Link
-                  className="btn btn-primary"
+                  className="btn btn-danger"
                   to={`/addNewCard/${profile.id}`}
                 >
-                  Delete
+                  <AiFillDelete />
                 </Link>
               </div>
 
@@ -70,7 +74,7 @@ const Cards = ({ name }) => {
                   className="btn btn-primary "
                   rel="noopener noreferrer"
                 >
-                  LinkedIn
+                  <ImLinkedin />
                 </a>
               </div>
             </div>
