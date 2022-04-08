@@ -25,7 +25,7 @@ const Navabar = () => {
             {auth ? (
               <div className="navbar-nav">
                 <li className="nav-item dropdown ">
-                  <a
+                  <li
                     className="nav-link dropdown-toggle  text-white fw-bold"
                     id="navbarDropdown"
                     role="button"
@@ -33,7 +33,7 @@ const Navabar = () => {
                     aria-expanded="false"
                   >
                     CollegeSpace
-                  </a>
+                  </li>
                   <ul
                     className="dropdown-menu "
                     aria-labelledby="navbarDropdown"
@@ -69,7 +69,7 @@ const Navabar = () => {
                 </li>
 
                 <li className="nav-item dropdown ">
-                  <a
+                  <li
                     className="nav-link dropdown-toggle  text-white fw-bold"
                     id="navbarDropdown"
                     role="button"
@@ -77,7 +77,7 @@ const Navabar = () => {
                     aria-expanded="false"
                   >
                     Add New
-                  </a>
+                  </li>
                   <ul
                     className="dropdown-menu "
                     aria-labelledby="navbarDropdown"

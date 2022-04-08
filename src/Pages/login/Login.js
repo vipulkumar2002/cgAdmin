@@ -1,11 +1,14 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
   const [userId, setUserId] = useState("");
+  // console.log(userId);
   const [userIdErr, setUserIdErr] = useState(false);
   const [password, setPassword] = useState("");
+  // console.log(password);
   const [passErr, setPassErr] = useState(false);
   const navigate = useNavigate();
 
@@ -19,23 +22,33 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     // console.log(userId, password);
+    try {
+      let result = await axios.get("http://localhost:4040/users/admins");
+      // result = await result.json();
+      console.log(result);
+      const user = result.data.user[0].userId;
+      setUserId(user);
+      const pass = result.data.user[0].userName;
+      setPassword(pass);
 
-    let result = await fetch("http://localhost:4000/login", {
-      method: "Post",
-      body: JSON.stringify({ userId, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    result = await result.json();
-    console.log(result);
-    if (result.userId) {
-      localStorage.setItem("user", JSON.stringify(result));
-      navigate("/");
-      alert("Log In success :)");
-    } else {
-      alert("data not match");
+      // console.log(pass);
+      if (userId || password) {
+        localStorage.setItem("user", userId);
+        navigate("/");
+        alert("Log In success :)");
+      } else {
+        alert("User not found match");
+      }
+    } catch (error) {
+      console.log(error);
     }
+    // let result = await fetch("http://localhost:4040/users//admin/new", {
+    //   method: "Post",
+    //   body: JSON.stringify({ userId, password }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
   };
 
   function userHandlar(e) {
@@ -44,14 +57,14 @@ const Login = () => {
     if (item.length < 4) {
       setUserIdErr(true);
     } else setUserIdErr(false);
-    setUserId(item);
+    // setUserId(item);
   }
   function passHandlar(e) {
     let item = e.target.value;
     if (item.length < 6) {
       setPassErr(true);
     } else setPassErr(false);
-    setPassword(item);
+    // setPassword(item);
   }
 
   return (
