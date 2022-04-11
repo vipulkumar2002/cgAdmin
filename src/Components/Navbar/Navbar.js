@@ -25,7 +25,7 @@ const Navabar = () => {
             {auth ? (
               <div className="navbar-nav">
                 <li className="nav-item dropdown ">
-                  <li
+                  <ul
                     className="nav-link dropdown-toggle  text-white fw-bold"
                     id="navbarDropdown"
                     role="button"
@@ -33,7 +33,7 @@ const Navabar = () => {
                     aria-expanded="false"
                   >
                     CollegeSpace
-                  </li>
+                  </ul>
                   <ul
                     className="dropdown-menu "
                     aria-labelledby="navbarDropdown"
@@ -42,7 +42,6 @@ const Navabar = () => {
                       <Link
                         className="dropdown-item text-black text-center "
                         to="/internships"
-                        name="internships"
                       >
                         Internships
                       </Link>
@@ -51,7 +50,6 @@ const Navabar = () => {
                       <Link
                         className="dropdown-item text-black text-center"
                         to="/placements"
-                        name="placements"
                       >
                         Placements
                       </Link>
@@ -69,15 +67,15 @@ const Navabar = () => {
                 </li>
 
                 <li className="nav-item dropdown ">
-                  <li
+                  <ul
                     className="nav-link dropdown-toggle  text-white fw-bold"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Add New
-                  </li>
+                    Add New Profile
+                  </ul>
                   <ul
                     className="dropdown-menu "
                     aria-labelledby="navbarDropdown"
@@ -85,7 +83,7 @@ const Navabar = () => {
                     <li>
                       <Link
                         className="dropdown-item text-black text-center "
-                        to="/addNewCard"
+                        to="/addInternNewCard"
                       >
                         Internship
                       </Link>
@@ -93,7 +91,7 @@ const Navabar = () => {
                     <li>
                       <Link
                         className="dropdown-item text-black text-center"
-                        to="/addNewCard"
+                        to="/addPlacementNewCard"
                       >
                         Placement
                       </Link>

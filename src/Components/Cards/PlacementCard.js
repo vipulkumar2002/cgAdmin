@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { ImLinkedin } from "react-icons/im";
 
-const Cards = () => {
+const PlacementCard = () => {
   const [profiles, setProfiles] = useState([]);
-  // console.log(profiles.data);
+  // console.log(name);
   useEffect(() => {
     getAllProfiles();
   }, []);
   async function getAllProfiles() {
     try {
       const profiles = await axios.get(
-        "http://localhost:4040/profiles/internships"
+        `http://localhost:4040/profiles/placements`
       );
-      // console.log(profiles.data);
-      setProfiles(profiles.data.internships);
+      // console.log(profiles.data.name.data);
+      setProfiles(profiles.data.placements);
     } catch (error) {
       console.log("Something went wrong");
     }
@@ -85,4 +85,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default PlacementCard;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -11,7 +11,8 @@ const Login = () => {
   // console.log(password);
   const [passErr, setPassErr] = useState(false);
   const navigate = useNavigate();
-
+  const { _id } = useParams();
+  console.log(_id);
   useEffect(() => {
     const auth = localStorage.getItem("user");
     if (auth) {
@@ -42,13 +43,6 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-    // let result = await fetch("http://localhost:4040/users//admin/new", {
-    //   method: "Post",
-    //   body: JSON.stringify({ userId, password }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
   };
 
   function userHandlar(e) {
@@ -69,7 +63,7 @@ const Login = () => {
 
   return (
     <div className="main_content">
-      <div className="login-container col-sm-4 offset-sm-4">
+      <div className="login-container ">
         <form className="gform">
           <h4 className="text-bold ">Log In, Here</h4>
           <p>We'll never share your email with anyone else.</p>

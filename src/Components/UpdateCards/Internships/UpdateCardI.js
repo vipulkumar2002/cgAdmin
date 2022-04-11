@@ -3,40 +3,52 @@ import "./UpdateCard.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-const UpdateCard = ({ name }) => {
+const UpdateCard = () => {
   const { id } = useParams();
-  // console.log(id);
+  console.log(id);
   const [profile, setProfile] = useState({
     person_name: "",
     company_name: "",
     job_role: "",
     employ_type: "",
+    linkedin: "",
     image_url: "",
   });
+  // const [profile, getProfile] = useState([]);
+  // console.log(profile);
+  function onChageInputFeild(e) {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+  }
   useEffect(() => {
-    getAllProfiles();
+    getProfileDetailes();
   }, [id]);
 
-  async function getAllProfiles() {
+  async function getProfileDetailes() {
     try {
       const profiles = await axios.get(
-        `http://localhost:7000/internships/${id}`
+        `http://localhost:4040/profiles/internship/${id}`
       );
-      // console.log(students.data);
-      setProfile(profiles.data);
+
+      setProfile(profiles.data.internship);
     } catch (err) {
       console.log("Something is wrong");
     }
   }
-  function onChageInputFeild(e) {
-    setProfile({ ...profile, [e.target.name]: e.target.value });
-  }
+
   let navigate = useNavigate();
   async function saveChanges(e) {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:7000/internships/${id}`, profile);
+      await axios.put(
+        `http://localhost:4040/profiles/internship/${id}`,
+        profile
+      );
+      Swal.fire({
+        icon: "success",
+        title: "Profile Updated Successfully",
+      });
       navigate("/internships");
     } catch (error) {
       console.log("Somthing went Wrong from Update");
@@ -48,7 +60,7 @@ const UpdateCard = ({ name }) => {
         <div
           className="Card_body"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
@@ -56,12 +68,12 @@ const UpdateCard = ({ name }) => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Update Profile
+                  Update Intern Profile
                 </h5>
               </div>
               <div className="modal-body">
                 <div className="mb-3" id="image_container">
-                  <label for="imageurl" className="form-label">
+                  <label htmlFor="imageurl" className="form-label">
                     Profile Image
                   </label>
                   <img
@@ -72,7 +84,7 @@ const UpdateCard = ({ name }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="imageurl" className="form-label">
+                  <label htmlFor="imageurl" className="form-label">
                     Image Url
                   </label>
                   <input
@@ -87,7 +99,7 @@ const UpdateCard = ({ name }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="tasktitle" className="form-label">
+                  <label htmlFor="tasktitle" className="form-label">
                     Name Of the Person
                   </label>
                   <input
@@ -102,7 +114,7 @@ const UpdateCard = ({ name }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="tasktype" className="form-label">
+                  <label htmlFor="tasktype" className="form-label">
                     Company Name
                   </label>
                   <input
@@ -134,17 +146,28 @@ const UpdateCard = ({ name }) => {
                   <input
                     type="text"
                     className="form-control"
-                    name="job_role"
+                    name="employ_type"
                     value={profile.employ_type}
                     aria-describedby="Task type"
                     placeholder="eg: Intern/job"
                     onChange={(e) => onChageInputFeild(e)}
                   />
                 </div>
+                <div className="mb-3">
+                  <label className="form-label">LinkedIn Url</label>
+                  <input
+                    type="url"
+                    className="form-control"
+                    name="linkedin"
+                    value={profile.linkedin}
+                    placeholder="https://www.linkedin.com/in/example.."
+                    onChange={(e) => onChageInputFeild(e)}
+                  ></input>
+                </div>
               </div>
               <div className="modal-footer">
                 <button
-                  type="button"
+                  type="submit"
                   className="btn btn-primary"
                   onClick={(e) => saveChanges(e)}
                   data-bs-dismiss="modal"

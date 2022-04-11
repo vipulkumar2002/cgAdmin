@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+
 import "./AddNewCard.css";
-// import Placement from "../../../Pages/Placements/Placement";
 import Internships from "../../../Pages/Internships/Internships";
 // import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
-const AddNewCards = ({ name }) => {
+const AddInternNewCard = () => {
   const [profile, setProfile] = useState({
     person_name: "",
     company_name: "",
@@ -23,7 +22,10 @@ const AddNewCards = ({ name }) => {
   async function addChanges(e) {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:7000/${name}`, profile);
+      await axios.post(
+        `http://localhost:4040/profiles/internship/new`,
+        profile
+      );
       // console.log(students.data);
       setStatus(true);
     } catch (error) {
@@ -47,7 +49,7 @@ const AddNewCards = ({ name }) => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Add New Profile
+                  Add New Intern Profile
                 </h5>
               </div>
               <div className="modal-body">
@@ -127,9 +129,7 @@ const AddNewCards = ({ name }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="taskdescription" className="form-label">
-                    LinkedIn Url
-                  </label>
+                  <label className="form-label">LinkedIn Url</label>
                   <input
                     className="form-control"
                     name="linkedin"
@@ -157,4 +157,4 @@ const AddNewCards = ({ name }) => {
   );
 };
 
-export default AddNewCards;
+export default AddInternNewCard;
