@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { ImLinkedin } from "react-icons/im";
+import Swal from "sweetalert2";
 
 const PlacementCard = () => {
   const [profiles, setProfiles] = useState([]);
@@ -22,6 +23,23 @@ const PlacementCard = () => {
       console.log("Something went wrong");
     }
   }
+
+  const deleteProfile = async (id) => {
+    try {
+      const result = await axios.delete(
+        `http://localhost:4040/profiles/placement/${id}`
+      );
+      if (result) {
+        Swal.fire({
+          icon: "success",
+          title: "Profile Deleted Successfully",
+        });
+        getAllProfiles();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {profiles.map((profile, i) => {
@@ -52,19 +70,16 @@ const PlacementCard = () => {
               <div>
                 <Link
                   className="btn btn-success"
-                  to={`/UpdateCardI/${profile.id}`}
+                  to={`/updateCardP/${profile._id}`}
                 >
                   <AiFillEdit />
                 </Link>
               </div>
 
               <div>
-                <Link
-                  className="btn btn-danger"
-                  to={`/addNewCard/${profile.id}`}
-                >
-                  <AiFillDelete />
-                </Link>
+                <button className="btn btn-danger">
+                  <AiFillDelete onClick={(e) => deleteProfile(profile._id)} />
+                </button>
               </div>
 
               <div>

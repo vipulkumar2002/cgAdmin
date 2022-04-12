@@ -6,16 +6,3 @@
   text-align: center;
   margin-bottom: 30px;
 }
-
-.addNewCard {
-  width: 300px;
-  height: 200px;
-  background-color: blueviolet;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.add-btn {
-  color: #fff;
-}

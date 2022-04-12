@@ -4,9 +4,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { ImLinkedin } from "react-icons/im";
-// import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const Cards = ({ name }) => {
+const Cards = () => {
   const [profiles, setProfiles] = useState([]);
   // console.log(name);
   useEffect(() => {
@@ -16,7 +16,7 @@ const Cards = ({ name }) => {
   async function getAllProfiles() {
     try {
       const profiles = await axios.get(
-        `http://localhost:4040/profiles/${name}`
+        `http://localhost:4040/profiles/internships`
       );
       // console.log(profiles.data.name.data);
 
@@ -25,6 +25,23 @@ const Cards = ({ name }) => {
       console.log("Something went wrong");
     }
   }
+
+  const deleteProfile = async (id) => {
+    try {
+      const result = await axios.delete(
+        `http://localhost:4040/profiles/internship/${id}`
+      );
+      if (result) {
+        Swal.fire({
+          icon: "success",
+          title: "Profile Deleted Successfully",
+        });
+        getAllProfiles();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {profiles.map((profile, i) => {
@@ -55,19 +72,16 @@ const Cards = ({ name }) => {
               <div>
                 <Link
                   className="btn btn-success"
-                  to={`/UpdateCardI/${profile._id}`}
+                  to={`/updateCardI/${profile._id}`}
                 >
                   <AiFillEdit />
                 </Link>
               </div>
 
               <div>
-                <Link
-                  className="btn btn-danger"
-                  to={`/addNewCard/${profile.id}`}
-                >
-                  <AiFillDelete />
-                </Link>
+                <button className="btn btn-danger">
+                  <AiFillDelete onClick={(e) => deleteProfile(profile._id)} />
+                </button>
               </div>
 
               <div>

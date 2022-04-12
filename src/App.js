@@ -14,6 +14,7 @@ import About from "./Pages/About/About";
 import AddInternNewCard from "./Components/AddNewCards/Internship/AddInternNewCard";
 import AddPlacementNewCard from "./Components/AddNewCards/Placement/AddPlacementNewCard";
 import UpdateCardI from "./Components/UpdateCards/Internships/UpdateCardI";
+import UpdateCardP from "./Components/UpdateCards/Placement/UpdateCardP";
 import ProtectedRoute from "./Components/PrivateRought/ProtectedRoute";
 import Logout from "./Components/Logout/Logout";
 
@@ -40,7 +41,8 @@ const App = () => {
               element={<AddPlacementNewCard />}
             />
             <Route path="/logout" element={<Logout />} />
-            <Route exact path="/UpdateCardI/:id" element={<UpdateCardI />} />
+            <Route exact path="/updateCardI/:id" element={<UpdateCardI />} />
+            <Route exact path="/updateCardP/:id" element={<UpdateCardP />} />
           </Route>
         </Routes>
       </div>

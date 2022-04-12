@@ -8,7 +8,7 @@ const Internships = () => {
     <div className="main_content">
       <h1 className="intern-heading">CollegeSpace - Internships</h1>
       <div className="cards row col-md-6 col-lg-4 ">
-        <Cards name="internships" />
+        <Cards />
       </div>
     </div>
     //internships
