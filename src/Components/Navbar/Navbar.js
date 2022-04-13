@@ -1,13 +1,20 @@
 import React from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Navabar = () => {
   const auth = localStorage.getItem("user");
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
-    navigate("/login");
+    Swal.fire(
+      {
+        icon: "success",
+        title: "Logout Successful",
+      },
+      navigate("/login")
+    );
   };
   return (
     <>

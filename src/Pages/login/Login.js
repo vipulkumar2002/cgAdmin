@@ -1,18 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [userId, setUserId] = useState("");
-  // console.log(userId);
-  const [userIdErr, setUserIdErr] = useState(false);
+
   const [password, setPassword] = useState("");
   // console.log(password);
-  const [passErr, setPassErr] = useState(false);
   const navigate = useNavigate();
-  const { _id } = useParams();
-  console.log(_id);
+
   useEffect(() => {
     const auth = localStorage.getItem("user");
     if (auth) {
@@ -22,21 +20,29 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // console.log(userId, password);
     try {
-      let result = await axios.get("http://localhost:4040/users/admins");
-      // result = await result.json();
-      console.log(result);
-      const user = result.data.user[0].userId;
-      setUserId(user);
-      const pass = result.data.user[0].userName;
-      setPassword(pass);
+      let result = await axios.post("http://localhost:4040/users/admin/login", {
+        userId,
+        password,
+      });
+
+      // console.log(result.data.token);
+      const user = result.data.token;
+      // setUserId(user);
+      // const pass = result.data.token;
+      // setPassword(pass);
 
       // console.log(pass);
-      if (userId || password) {
-        localStorage.setItem("user", userId);
-        navigate("/");
-        alert("Log In success :)");
+      if (user) {
+        localStorage.setItem("user", user);
+
+        Swal.fire(
+          {
+            icon: "success",
+            title: "Login  Successful",
+          },
+          navigate("/")
+        );
       } else {
         alert("User not found match");
       }
@@ -45,21 +51,21 @@ const Login = () => {
     }
   };
 
-  function userHandlar(e) {
-    let item = e.target.value;
+  // function userHandlar(e) {
+  //   let item = e.target.value;
 
-    if (item.length < 4) {
-      setUserIdErr(true);
-    } else setUserIdErr(false);
-    // setUserId(item);
-  }
-  function passHandlar(e) {
-    let item = e.target.value;
-    if (item.length < 6) {
-      setPassErr(true);
-    } else setPassErr(false);
-    // setPassword(item);
-  }
+  //   if (item.length < 4) {
+  //     setUserIdErr(true);
+  //   } else setUserIdErr(false);
+  //   // setUserId(item);
+  // }
+  // function passHandlar(e) {
+  //   let item = e.target.value;
+  //   if (item.length < 6) {
+  //     setPassErr(true);
+  //   } else setPassErr(false);
+  //   // setPassword(item);
+  // }
 
   return (
     <div className="main_content">
@@ -74,29 +80,29 @@ const Login = () => {
               className="form-control"
               id="staticEmail"
               name="email"
-              // value={userId}
+              value={userId}
               aria-describedby="emailHelp"
               placeholder="Email ID"
-              onChange={userHandlar}
+              onChange={(e) => setUserId(e.target.value)}
             />
           </div>
-          <div className="text-center m-2 text-danger">
+          {/* <div className="text-center m-2 text-danger">
             {userIdErr ? <span>Invalid User Name</span> : ""}
-          </div>
+          </div> */}
           <div className="mb-3">
             <input
               type="password"
               className="form-control"
               id="inputPassword"
               name="password"
-              // value={password}
+              value={password}
               placeholder="Password"
-              onChange={passHandlar}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="text-center m-2 text-danger">
+          {/* <div className="text-center m-2 text-danger">
             {passErr ? <span>Invalid PassWord</span> : ""}
-          </div>
+          </div> */}
           <button
             onClick={handleLogin}
             className="btn btn-primary form-control fs-5"

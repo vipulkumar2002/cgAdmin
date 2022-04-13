@@ -1,9 +1,7 @@
 import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-//Components
-import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
+
 //Pages
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/login/Login";
@@ -11,6 +9,8 @@ import Placements from "./Pages/Placements/Placement";
 import Internships from "./Pages/Internships/Internships";
 import About from "./Pages/About/About";
 //Components
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
 import AddInternNewCard from "./Components/AddNewCards/Internship/AddInternNewCard";
 import AddPlacementNewCard from "./Components/AddNewCards/Placement/AddPlacementNewCard";
 import UpdateCardI from "./Components/UpdateCards/Internships/UpdateCardI";
