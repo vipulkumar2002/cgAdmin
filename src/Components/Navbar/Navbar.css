@@ -7,26 +7,18 @@
 .navbar {
   color: #fff;
   background-color: #00aec7;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
 }
 
-.nav-container {
-  display: grid;
-  justify-content: space-between;
-}
-.logo-container {
+/* .logo-container {
   display: flex;
-  height: 75px;
-  width: 120px;
-  padding: 0;
-  align-items: center;
-}
+} */
 
 .logo-img {
-  color: #fff;
-  text-decoration: none;
   font-size: 2rem;
-  text-align: center;
-  font-weight: 700;
+  padding-left: 20px;
 }
 
 .content-img {

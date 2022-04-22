@@ -35,7 +35,6 @@ const Login = () => {
       // console.log(pass);
       if (user) {
         localStorage.setItem("user", user);
-
         Swal.fire(
           {
             icon: "success",
